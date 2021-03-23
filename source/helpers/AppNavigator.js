@@ -23,9 +23,10 @@ import PhoneScreen from '../features/phone/PhoneScreen'
 import NewPassScreen from '../features/newpassword/NewPassScreen'
 import FGScreen from '../features/fgscreen/FGScreen'
 import proFileScreen from '../features/profilescreen/proFileScreen'
+import HomeScreen from '../features/home/HomeScreen'
 
 const MainStack = createStackNavigator()
-const BottomTabs = createBottomTabNavigator()
+const BottomTabs = createMaterialTopTabNavigator()
 
 const AppNavigator = () => {
 
@@ -34,6 +35,7 @@ const AppNavigator = () => {
       <MainStack.Navigator initialRouteName="BottomTabs">
 
         <MainStack.Screen name="BottomTabs" component={NavBottomTabs} />
+        <MainStack.Screen name="HomeScreen" component={HomeScreen} />
 
         <MainStack.Screen name="SignInScreen" component={SignInScreen} />
         <MainStack.Screen name="FGScreen" component={FGScreen} />
@@ -57,13 +59,10 @@ const NavBottomTabs = () => {
   return (
     <BottomTabs.Navigator tabBarPosition='bottom' swipeEnabled={false} backBehavior='none'
       initialRouteName="Home" screenOptions={{ ...TransitionPresets.SlideFromRightIOS }}
-      tabBarOptions={{
-        activeTintColor:'#f58b03'
-      }}
-      labeStyle={{fontSize:12}}
-      // tabBar={props => <CustomTab {...props}
-      //  />}
-      style={{backgroundColor:'#f58b03'}}
+     
+      tabBar={props => <CustomTab {...props}
+       />}
+     
       >
       <BottomTabs.Screen name="Home" component={proFileScreen} 
         component={proFileScreen}
@@ -77,7 +76,7 @@ const NavBottomTabs = () => {
       <BottomTabs.Screen name="About" component={proFileScreen} />
       <BottomTabs.Screen name="Setting" component={proFileScreen} />
       
-      <BottomTabs.Screen name="Account" component={proFileScreen} />
+      <BottomTabs.Screen name="Account" component={HomeScreen} />
     </BottomTabs.Navigator>
   );
 }
