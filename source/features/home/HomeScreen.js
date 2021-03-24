@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { View, TextInput, StyleSheet, ScrollView, TouchableOpacity, Image, Text } from 'react-native'
-import FormButton from '../../components/FontButtonSearch'
-import ButtonCategory from '../../components/ButtonCategory'
-import { Data } from '../../components/Data'
+import { View, TextInput, StyleSheet, ScrollView, TouchableOpacity, Image, Text, Modal, Button, Dimensions } from 'react-native'
+import FormButton from '../../components/buttons/FontButtonSearch'
+import ButtonCategory from '../../components/buttons/ButtonCategory'
+import { Data } from '../../components/buttons/Data'
+import ButtonShopping from '../../components/buttons/ButtonShopping'
+
+const { width, height } = Dimensions.get('screen')
 
 export default HomeScreen = ({ navigation }) => {
   const [searchValue, setSearchValue] = useState()
+  const [isShow, setIsShow] = useState()
+  const showModal = () => setIsShow(true);
+  const hideModal = () => setIsShow(false);
   return (
     <ScrollView >
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerContainer}>
-            <View style={styles.searchContainer}>
-              <TextInput
-                value={searchValue}
-                onChangeText={(valueCategori) => setSearchValue(valueCategori)}
-                style={styles.input}
-                placeholder="Search"
-                placeholderColor="#ACBAC3"
-              />
-              <FormButton />
-
-
-            </View>
-            <TouchableOpacity style={styles.buttonShopping}>
-              <Image
-                style={[styles.icon]}
-                resizeMode='contain'
-                source={require('../../ascess/image/icon_ShoppingCart.png')} />
-            </TouchableOpacity>
+            <FormButton
+              searchValue={searchValue}
+              onChangeText={(valueCategory) => setSearchValue(valueCategory)}
+              SearchText="Search"
+            />
+            <ButtonShopping />
           </View>
           <View>
             <Text style={styles.textCategory}>Category</Text>
@@ -56,7 +50,7 @@ export default HomeScreen = ({ navigation }) => {
                     source={require('../../ascess/image/icon_Pay.png')} />
 
                 </TouchableOpacity>
-                <Text style={styles.textValue}>Pay</Text>
+                <Text style={styles.textCustom}>Pay</Text>
               </View>
 
               <View style={styles.Custom}>
@@ -67,36 +61,44 @@ export default HomeScreen = ({ navigation }) => {
                     source={require('../../ascess/image/icon_ToUp.png')} />
 
                 </TouchableOpacity>
-                <Text style={styles.textValue}>To up</Text>
+                <Text style={styles.textCustom}>To up</Text>
 
               </View>
+
               <View style={styles.Custom}>
-                <TouchableOpacity >
+
+                <TouchableOpacity onPress={showModal} style={styles.viewMore} >
                   <Image
                     style={[styles.iconCustom]}
                     resizeMode='contain'
                     source={require('../../ascess/image/icon_More.png')} />
-
                 </TouchableOpacity>
-                <Text style={styles.textValue}>More</Text>
+
+                <Text style={styles.textCustom}>More</Text>
 
               </View>
-
-
             </View>
           </View>
         </View>
+          {isShow &&
+          <Modal style={styles.modal}>
+            <View>
+              <Button title="Click To Close Modal" onPress={hideModal} />
+            </View>
+            </Modal>
+          }
 
         <View style={styles.footer}>
         </View>
       </View>
+     
     </ScrollView >
   )
 }
 const styles = StyleSheet.create({
   Container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffff',
   },
   header: {
     flex: 1,
@@ -128,24 +130,7 @@ const styles = StyleSheet.create({
     color: '#ACBAC3',
     marginLeft: 13,
   },
-  icon: {
-    width: 24,
-    height: 24,
-  },
-  buttonShopping: {
-    backgroundColor: '#7BCFE9',
-    width: 36,
-    height: 36,
-    alignItems: 'center',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    marginLeft: 6,
-    marginRight: 31,
-    justifyContent: 'center',
-    marginTop: 3
-  },
+
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -173,6 +158,7 @@ const styles = StyleSheet.create({
   iconWallet: {
     width: 28,
     height: 28,
+    marginLeft: 23.5
   },
   textValue: {
     color: '#FFFFFF',
@@ -180,26 +166,53 @@ const styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 25,
     fontWeight: 'bold',
-    marginRight: 38,
+    marginRight: 25,
 
   },
   viewChild: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'space-around',
+    flex: 1,
+
   },
   buttonWallet: {
-
     marginRight: 11,
   },
   Custom: {
-    marginTop: 15
+    alignItems: 'stretch',
+    marginLeft: 28,
   },
   iconCustom: {
     width: 20,
     height: 20,
-  }
+    marginBottom: 6,
+    marginRight: 10,
 
 
+  },
+  textCustom: {
+    color: '#FFFFFF',
+    fontStyle: 'normal',
+    fontSize: 10,
+    lineHeight: 12,
+    fontWeight: 'bold',
+    marginRight: 38,
+
+  },
+  viewMore: {
+    zIndex: 1,
+  },
+  modal: {
+    zIndex: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: height,
+    width:width,
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: 'rgba(0,0,0,.3)',
+ 
+  },
 
 });

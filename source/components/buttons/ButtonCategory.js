@@ -16,9 +16,7 @@ const ButtonCategory = ({ data }) => {
                     renderItem={({ item }) => {
                         return <FormButtonCategory item={item} />
                     }}
-
                 />
-
             </View>
         )
     }
@@ -27,8 +25,6 @@ const ButtonCategory = ({ data }) => {
     return null
 }
 
-const styles = StyleSheet.create({
-    dotView: { flexDirection: 'row', justifyContent: 'center' }
-})
 
 export default ButtonCategory
+
