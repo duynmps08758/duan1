@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import FGScreen from '../fgscreen/FGScreen'
 
 
 
-export default EmailScreen = () => {
+export default EmailScreen = ({navigation}) => {
     const [email, onChangeEmail] = React.useState();
    
-
+_showForgotOTP = () =>{
+    navigation.push("FGScreen")
+} 
     return (
         <View style={style.container}>
             <View style={style.header}
@@ -61,7 +64,7 @@ export default EmailScreen = () => {
               
                 <TouchableOpacity
                     style={style.signinbutton}
-                    onPress={() => { }}
+                    onPress={_showForgotOTP}
                 >
                     <Text style={style.textbuttonSign} >Save Email Adress</Text>
                 </TouchableOpacity>

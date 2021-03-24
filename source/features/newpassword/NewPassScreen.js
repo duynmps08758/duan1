@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import SignInScreen from '../login/SignInScreen'
 
 
 
-export default NewPassScreen = () => {
+
+export default NewPassScreen = ({navigation}) => {
     const [newPass, onChangeNewPass] = React.useState();
     const [conFirmPass, onChangeConFirmPass] = React.useState();
 
+
+    _showHome = () => {
+       
+        navigation.push("SignInScreen")
+
+    }
     return (
         <View style={style.container}>
             <View style={style.header}
@@ -30,7 +38,7 @@ export default NewPassScreen = () => {
                     <TextInput
                         style={style.input}
                         onChangeText={onChangeConFirmPass}
-                        placeholder="Nhap UserName"
+                        placeholder="Nhap PassWord"
                         value={conFirmPass}
 
                     />
@@ -45,7 +53,7 @@ export default NewPassScreen = () => {
                 
                 <TouchableOpacity
                     style={style.signinbutton}
-                    onPress={() => { }}
+                    onPress={_showHome}
                 >
                     <Text style={style.textbuttonSign} >Sign In</Text>
                 </TouchableOpacity>

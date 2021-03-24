@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image,width } from 'react-native'
+import NewPassScreen from '../newpassword/NewPassScreen'
 
 
-
-export default FBScreen = () => {
+export default FBScreen = ({navigation}) => {
     const [fGOne, onChangeFGOne] = React.useState();
     const [fGTwo, onChangeFGTwo] = React.useState();
     const [fGTree, onChangeFGTree] = React.useState();
 
     const [fGFour, onChangeFGFour] = React.useState();
 
-   
+    _showNewPass = () => {
+       
+        navigation.push("NewPassScreen")
+
+    }
    
 
     return (
@@ -107,7 +111,7 @@ export default FBScreen = () => {
               
                 <TouchableOpacity
                     style={style.signinbutton}
-                    onPress={() => { }}
+                    onPress={_showNewPass}
                 >
                     <Text style={style.textbuttonSign} >Verify Code</Text>
                 </TouchableOpacity>

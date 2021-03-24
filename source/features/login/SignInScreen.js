@@ -1,17 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
+import HomeScreen from '../home/HomeScreen';
+import FGScreen from '../fgscreen/FGScreen'
+import SignUpScreen from '../register/ReGisTer'
+import EmailScreen from '../email/EmailSreens'
 
-
-
-export default SignInScreen = () => {
+export default SignInScreen = ({navigation}) => {
     const [userName, onChangeUserName] = React.useState();
     const [passWord, onChangeTextPassWord] = React.useState();
+    _showHome = () => {
+       
+        navigation.push("HomeScreen")
 
+    }
+    _showFotGot = () => {
+       
+        navigation.push("EmailScreen")
+
+    }
+    _showRegister = () => {
+       
+        navigation.push("SignUpScreen")
+
+    }
+  
     return (
         <View style={style.container}>
             <View style={style.header}
             >
-                <Text style={style.textStyleUp} >Sign Up</Text>
+               <TouchableOpacity
+              
+                    onPress={_showRegister}
+                >
+                    <Text style={style.textStyleUp} >Sign Up</Text>
+                </TouchableOpacity>
                 <Text style={style.textStyleSign} >Sign In</Text>
                 <Text style={style.textStyle}>Lorem ipsum dolor sit amet, consectetur adipidscing.</Text>
                 <Text style={style.textStyle}>integer maxximus accumsan erat id fasilicis. </Text>
@@ -44,13 +66,13 @@ export default SignInScreen = () => {
 
                 <TouchableOpacity
                     style={style.forgotbutton}
-                    onPress={() => { }}
+                    onPress={_showFotGot}
                 >
                     <Text style={style.buttonText}>Fotgot PassWord?</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={style.signinbutton}
-                    onPress={() => { }}
+                    onPress={_showHome}
                 >
                     <Text style={style.textbuttonSign} >Sign In</Text>
                 </TouchableOpacity>
@@ -125,7 +147,7 @@ const style = StyleSheet.create({
         fontSize: 20,
         position: 'absolute',
         right: 20,
-        top: 30,
+        top: -50,
         color: 'white'
 
     },

@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
+import SignInScreen from '../login/SignInScreen'
 
 
-
-export default SignUpScreen = () => {
+export default SignUpScreen = ({navigation}) => {
     const [userName, onChangeUserName] = React.useState();
     const [passWord, onChangeTextPassWord] = React.useState();
     const [email, onChangeEmail] = React.useState();
     const [conFirmPassWord, onChangeConFirmPassWord] = React.useState();
 
+
+    _showSignIn = () =>{
+        navigation.push("SignInScreen")
+    } 
     return (
         <View style={style.container}>
             
             <View style={style.header}
             >
-                <Text style={style.textStyleUp} >Sign In</Text>
+                 <TouchableOpacity
+              
+              onPress={_showSignIn}
+          >
+              <Text style={style.textStyleUp} >Sign In</Text>
+          </TouchableOpacity>
                 <Text style={style.textStyleSign} >Sign Up</Text>
                 <Text style={style.textStyle}>Lorem ipsum dolor sit amet, consectetur adipidscing.</Text>
                 <Text style={style.textStyle}>integer maxximus accumsan erat id fasilicis. </Text>
@@ -71,7 +80,7 @@ export default SignUpScreen = () => {
                     style={style.signinbutton}
                     onPress={() => { }}
                 >
-                    <Text style={style.textbuttonSign} >Sign In</Text>
+                    <Text style={style.textbuttonSign} >Sign Up</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={style.mediabutton}
@@ -246,7 +255,15 @@ const style = StyleSheet.create({
 
 
 
-    }
+    },
+    textStyleUp: {
+        fontSize: 20,
+        position: 'absolute',
+        right: 20,
+        top: -50,
+        color: 'white'
+
+    },
 
 
 

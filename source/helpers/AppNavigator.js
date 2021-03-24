@@ -24,6 +24,8 @@ import NewPassScreen from '../features/newpassword/NewPassScreen'
 import FGScreen from '../features/fgscreen/FGScreen'
 import proFileScreen from '../features/profilescreen/proFileScreen'
 import HomeScreen from '../features/home/HomeScreen'
+import itemCardShopPing from '../../source/components/itemcard/itemCardShopPing'
+import ShopPingCardScreen from '../features/shoppingcardscreen/ShopPingCardScreen'
 
 const MainStack = createStackNavigator()
 const BottomTabs = createMaterialTopTabNavigator()
@@ -32,10 +34,13 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      <MainStack.Navigator initialRouteName="BottomTabs">
+      <MainStack.Navigator initialRouteName="ShopPingCardScreen">
 
         <MainStack.Screen name="BottomTabs" component={NavBottomTabs} />
         <MainStack.Screen name="HomeScreen" component={HomeScreen} />
+        <MainStack.Screen name="itemCardShopPing" component={itemCardShopPing} />
+        <MainStack.Screen name="ShopPingCardScreen" component={ShopPingCardScreen} />
+
 
         <MainStack.Screen name="SignInScreen" component={SignInScreen} />
         <MainStack.Screen name="FGScreen" component={FGScreen} />
@@ -64,15 +69,10 @@ const NavBottomTabs = () => {
        />}
      
       >
-      <BottomTabs.Screen name="Home" component={proFileScreen} 
-        component={proFileScreen}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color,size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={20} />
-          ),
-        }}/>
-      <BottomTabs.Screen name="Payment" component={proFileScreen} />
+      <BottomTabs.Screen  name="Home" component={proFileScreen} 
+        component={proFileScreen} 
+       />
+      <BottomTabs.Screen  name="Payment" component={proFileScreen} />
       <BottomTabs.Screen name="About" component={proFileScreen} />
       <BottomTabs.Screen name="Setting" component={proFileScreen} />
       
